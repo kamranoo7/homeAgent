@@ -1,0 +1,7 @@
+{
+    "openaiKey": "",
+    "vectordb_url": "https://hatest-mhjogoio.weaviate.network",
+    "vectordb_api": "AvRHcHnVHYhoowtRwVVcH4W1SjfFbSc4nSuQ",
+    "class_name_answers": "ha_answers",
+    "class_name_questions": "ha_questions"
+}
