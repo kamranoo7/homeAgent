@@ -1,0 +1,50 @@
+What is the distinctive value proposition offered by Capria to its portfolio companies?
+What is the readiness timeframe for the rapid prototyping process at Capria?
+What is the primary objective of the document provided by Capria?
+How does Capria plan to maximize the productivity of its developers?
+What is the role of the dedicated team of developers at Capria?
+What is the first step in the company's rapid prototyping process?
+Who typically attends the kickoff meeting from the company's side?
+What is the purpose of the kickoff meeting?
+How are development opportunities identified during the kickoff meeting?
+What happens after the development opportunities have been identified in the kickoff meeting?
+What is the purpose of the document created after the kickoff meeting?
+How is the document from the kickoff meeting stored and organized?
+What is the process of formalizing the agreement between the company and the portco?
+What information is included in the formal agreement between the company and the portco?
+What is the importance of establishing communication channels in the project?
+What is the primary mode of communication used in the project?
+What is the secondary mode of communication used for urgent matters?
+What is the purpose of the secure folder created for the project?
+What tool is used for task assignment and tracking in the project?
+What is the naming convention for the project in the project management tool?
+How are tasks tracked, updated, and monitored in the project?
+What is the role of the lead developer in maintaining communication with the portco’s CTO/Data Scientist?
+How is sensitive information of the user/company protected?
+What tool is used as a data warehouse and what are its advantages in addressing privacy issues?
+What is the Agile Methodology and how is it used in the project?
+What are the key principles of Agile?
+What actions should be taken every week to establish organized collaboration within a team?
+When should lead developers meet to decide on priorities for the following week?
+When should lead developers and the rest of the developers meet to give more context and clarity on the work that needs to be done?
+What should lead developers do every day to ensure progress and provide feedback to the developers?
+What is the Agile methodology used for in Asana?
+What are backlogs in the context of project management in Asana?
+What are tasks in the context of project management in Asana?
+How are tasks tracked in Asana?
+What is the purpose of the weekly updates presented by lead developers to management?
+What happens when a task is being worked on?
+What is done after all tasks for a specific backlog are done?
+What is included in the Google Sheet for each project?
+What is the naming convention for the new sheet created for testing?
+What platform does the team use for coding?
+What is the purpose of associating usernames with Capria email addresses?
+What is the role of Keeper in the development ecosystem?
+What is the significance of including the account developers@capria.vc as a collaborator in GitHub repositories?
+How does integrating professional practices uphold Agile principles?
+What is the guide for hosting and sharing developed projects or sprints with PortCo and rest of stakeholders?
+What platform is recommended for hosting work for feedback?
+What is the corporate AWS account to be used?
+Who typically handles code migration?
+What is included in the final POC sent to the portco?
+What disclaimer is advised to be included when sending the final code source to the portco?
