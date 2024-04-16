@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Chatbot Toggle Interface</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    
+    /* Basic Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+
+       
+        font-family: 'Courier New', Courier, monospace;
+        background-color: black;
+        padding: 20px;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100vh;
+    }
+
+    .toggle-buttons {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+    }
+
+    button {
+        font-family: 'Courier New', Courier, monospace;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border: 0px;
+        border-radius: 10px;
+        background-color: #5f9a6c;
+        padding: 10px 20px;
+        margin-bottom: 5px;
+        cursor: pointer;
+    }
+
+    .chat-container {
+        width: 75%;
+        margin: auto;
+        margin-top: 100px;
+        background: white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        display: none; /* Initially hidden */
+    }
+    input#question-input{
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .chat-header {
+        background: #4e8669;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .chat-body {
+        padding: 10px 20px 20px 20px;
+        height: 300px;
+        overflow-y: auto;
+    }
+
+    .input-group {
+        padding: 10px;
+        background: #f4f4f4;
+        display: flex;
+    }
+
+    .input-group input, .input-group button {
+        padding: 10px;
+        border: 1px solid #ddd;
+        margin: 0 2px;
+    }
+
+    input[type="text"] {
+        flex: 1;
+    }
+
+    .chat-messages {
+        margin-bottom: 15px;
+        background: #f8f8f8;
+        font-weight: bold;
+        
+        padding: 10px;
+        border-radius: 5px;
+    }
+input#conversation-input{
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+}
+    .chat-messages.user-message {
+        background: #d1dffd;
+        
+        text-align: right;
+    }
+#btn{
+    margin-top: 55px;
+    margin-left: 32%;
+}
+</style>
+</head>
+<body>
+    <h1 style="color: white;position: fixed;">Welcome to Home Agent</h1>
+    <div id="btn" class="toggle-buttons">
+        <button onclick="toggleChat('question')">Question Generator</button>
+        <button onclick="toggleChat('answer')">Answer Generator</button>
+    </div>
+
+    <div class="chat-container" id="question-container">
+        <div class="chat-header">Conversation Question Generator</div>
+        <div class="chat-body" id="questions-body">
+            <!-- Generated questions will appear here -->
+        </div>
+        <div class="input-group">
+            <input type="text" id="conversation-input" placeholder="Enter conversation...">
+            <button onclick="submitConversation()">Send</button>
+        </div>
+    </div>
+
+    <div class="chat-container" id="answer-container">
+        <div class="chat-header">Answer Generator</div>
+        <div class="chat-body" id="response-body">
+            <!-- Generated responses will appear here -->
+        </div>
+        <div class="input-group">
+            <input type="text" id="question-input" placeholder="Enter question...">
+            <button onclick="submitQuestion()">Send</button>
+        </div>
+    </div>
+
+<script>
+function toggleChat(type) {
+    if (type === 'question') {
+        $('#question-container').toggle();
+        $('#answer-container').hide();
+    } else if (type === 'answer') {
+        $('#answer-container').toggle();
+        $('#question-container').hide();
+    }
+}
+
+function submitConversation() {
+    var conversationText = $('#conversation-input').val();
+    $('#conversation-input').val(''); // Clear input field
+    appendMessage(conversationText, 'user-message', '#questions-body'); // Show user message
+    var conversationData = { conversation: conversationText, efficient_search: 1 };
+    $.ajax({
+        url: '/return_questions',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(conversationData),
+        success: function(data) {
+            appendMessage(data.join("\n"), 'bot-message', '#questions-body'); // Show bot messages
+        },
+        error: function(error) {
+            appendMessage('Error: ' + error.responseJSON.error, 'bot-message', '#questions-body');
+        }
+    });
+}
+
+function submitQuestion() {
+    var questionText = $('#question-input').val();
+    $('#question-input').val(''); // Clear input field
+    appendMessage(questionText, 'user-message', '#response-body'); // Show user message
+    var questionData = { question: questionText };
+    $.ajax({
+        url: '/get_response',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(questionData),
+        success: function(data) {
+            appendMessage(data, 'bot-message', '#response-body'); // Show bot responses
+        },
+        error: function(error) {
+            appendMessage('Error: ' + error.responseJSON.error, 'bot-message', '#response-body');
+        }
+    });
+}
+
+function appendMessage(message, type, container) {
+    var msgDiv = $('<div>').addClass('chat-messages ' + type).text(message);
+    $(container).append(msgDiv);
+    $(container).scrollTop($(container)[0].scrollHeight); // Auto scroll to the latest message
+}
+</script>
+</body>
+</html>
